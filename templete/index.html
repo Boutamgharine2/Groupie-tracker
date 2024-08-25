@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/style.css">
+    <title>groupie-tracker</title>
+</head>
+<body>
+    <h1><strong>artists</strong></h1>
+    <div class="container">
+      
+        
+        {{range .}}
+            {{if and (ne .Id 21) (ne .Id 43)}}
+            
+            <a href="/artist/{{.Id}}">
+             
+            <section class="actor" >
+                <h2>{{.Name}}</h2>
+                <div>
+                    <img src="{{.Image}}" alt="{{.Name}}">
+                    <p class="menu">First Album: {{.FirstAlbum }}</p>
+                   
+                </div>
+            </section>
+        </a>
+            
+            {{end}}
+        {{end}}
+    </div>
+</body>
+</html>

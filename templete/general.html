@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/style.css">
+    <title>Groupie Tracker</title>
+</head>
+<body>
+    <h1><strong>General Information about the Artist</strong></h1>
+    <div>
+        <img src="{{.Information.Image}}" alt="{{.Information.Name}}">
+        <h2>{{.Information.Name}}</h2>
+        <p>First Album: {{.Information.FirstAlbum}}</p>
+        <p>Creation Date: {{.Information.CreationDate}}</p>
+        <p>Members:</p>
+        <ul>
+            {{range .Information.Members}}
+                <li>{{.}}</li>
+            {{end}}
+        </ul>
+
+        {{if .Location.Locations}}
+        <section>
+            <h2>Locations:</h2>
+            <ul>
+                {{range .Location.Locations}}
+                    <li>{{.}}</li>
+                {{end}}
+            </ul>
+        </section>
+        {{else}}
+            <p>No locations available</p>
+        {{end}}
+
+        {{if .Dates.Dates}}
+        <section>
+            <h2>Concert Dates:</h2>
+            <ul>
+                {{range .Dates.Dates}}
+                    <li>{{.}}</li>
+                {{end}}
+            </ul>
+        </section>
+        {{else}}
+            <p>No concert dates available</p>
+        {{end}}
+
+        {{if .Rolation.DatesLocations}}
+        <section>
+            <h2>Date and Location Relations:</h2>
+            <ul>
+                {{range $date, $location := .Rolation.DatesLocations}}
+                    <li>{{ $date }} - {{ $location }}</li>
+                {{end}}
+            </ul>
+        </section>
+        {{else}}
+            <p>No date and location relations available</p>
+        {{end}}
+    </div>
+</body>
+</html>
