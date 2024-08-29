@@ -11,7 +11,7 @@ import (
 	groupie "groupie/data"
 )
 
-func ArtistHandler(w http.ResponseWriter, r *http.Request) {
+func ArtistHandler(w http.ResponseWriter, r *http.Request) {       // traiter les information des artistes dans la second page  
 	url1 := "https://groupietrackers.herokuapp.com/api/"
 	var data groupie.Artist
 	if r.Method != http.MethodGet {
@@ -25,7 +25,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		PageNotFound(w, r)
 		return
 	}
-	err1 := FetchHandler(url1, &data, strconv.Itoa(num))
+	err1 := FetchHandler(url1, &data, strconv.Itoa(num))                             //remplir les defèrants structures à partir des donnés des APIS 
 
 	if err1 != nil {
 		fmt.Println(err1)

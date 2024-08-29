@@ -7,9 +7,9 @@ import (
 	groupie "groupie/data"
 )
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
+func HomeHandler(w http.ResponseWriter, r *http.Request) {                       //fonction pour traiter les informations necessaire dans la premiere page
 	var tableau []groupie.Band
-	url := "https://groupietrackers.herokuapp.com/api/artists"
+	url := "https://groupietrackers.herokuapp.com/api/artists"                                 
 
 	if r.URL.Path != "/" {
 		PageNotFound(w, r)
@@ -21,7 +21,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := Handler(url, tableau)
+	data := Handler(url, tableau)                                             // decodé les donnès jeson et les stocker dans le variable tableau
 	tmpl := template.Must(template.ParseFiles("templete/index.html"))
 
 	tmpl.Execute(w, data)
