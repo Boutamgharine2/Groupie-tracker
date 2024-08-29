@@ -1,6 +1,6 @@
-package js
+package groupie
 
-type Info struct {
+type Band struct {
 	Id           int      `json:"id"`
 	Image        string   `json:"image"`
 	Name         string   `json:"name"`
@@ -17,11 +17,11 @@ type ConcertDates struct {
 	Dates []string `json:"dates"`
 }
 type Relations struct {
-	Id             int               `json:"id"`
-	DatesLocations map[string]string `json:"datesLocations"`
+	Id             int                 `json:"id"`
+	DatesLocations map[string][]string `json:"datesLocations"`
 }
-type Final struct {
-	Information Info
+type Artist struct {
+	Information Band
 	Location    Locations
 	Dates       ConcertDates
 	Rolation    Relations

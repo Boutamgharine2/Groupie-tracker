@@ -7,7 +7,9 @@
     <title>groupie-tracker</title>
 </head>
 <body>
-    <h1><strong>artists</strong></h1>
+    <div class="bar"> 
+    <h1 class="font"><strong>artists</strong></h1>
+    </div>
     <div class="container">
       
         
@@ -17,12 +19,10 @@
             <a href="/artist/{{.Id}}">
              
             <section class="actor" >
-                <h2>{{.Name}}</h2>
                 <div>
-                    <img src="{{.Image}}" alt="{{.Name}}">
-                    <p class="menu">First Album: {{.FirstAlbum }}</p>
-                   
+                    <img src="{{.Image}}" alt="{{.Name}}">                   
                 </div>
+                <h2 class="nam">{{.Name}}</h2>
             </section>
         </a>
             
@@ -30,4 +30,7 @@
         {{end}}
     </div>
 </body>
+<footer>
+    <strong>creat By <a href="https://github.com/Boutamgharine2"> ANOUAR BOUTAMGHARINE</a></strong>
+</footer> 
 </html>

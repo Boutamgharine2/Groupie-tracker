@@ -1,4 +1,4 @@
-package js
+package groupie
 
 import (
 	"encoding/json"
@@ -8,10 +8,10 @@ import (
 	"net/http"
 	"os"
 
-	js "js/data"
+	groupie "groupie/data"
 )
 
-func Handlhom(url string, data []js.Info) []js.Info {
+func Handler(url string, data []groupie.Band) []groupie.Band {
 	response, err := http.Get(url)
 	if err != nil {
 		fmt.Print(err.Error())

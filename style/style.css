@@ -1,18 +1,39 @@
-h1 ,h2{
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1,.nam {
     text-align: center;
     color: rgb(3, 3, 19);
 }
+   
+ul {
+    list-style-type:square;/* Change les puces en carrés */
+    padding-left: 20px; /* Ajoute un espacement à gauche de la liste */
+}
+.font {
+    font-style:italic;
+}
 .menu {
     color: black;
+    margin-bottom: 0px;
 }
+
 h1{
     color: #080811;
     text-align: center;
     margin-bottom: 200px;
     font-size: 80px;
 }
+
+.bar{
+    background-color:gold;
+    margin-bottom:0px;
+    padding-bottom: 0%;
+}
 body {
-    background-color:rgb(233, 233, 235);
+    background-color:white;
 }
 .container {
     text-align: center;
@@ -22,15 +43,18 @@ body {
     justify-content:center;
 }
 
+
 /* Style for each actor section */
 .actor {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border: 1px solid #070606; /* Optional: adds a border around each section */
+    border: 3px solid #070606; /* Optional: adds a border around each section */
     padding: 10px; /* Optional: adds padding inside each section */
     width: 200px; /* Optional: set a fixed width for each section */
+    transform: translateY(100px); /* Déplacement vers le haut lorsque la souris est dessus */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombrage plus prononcé */
 }
 
 /* Ensure images fit within their container */
@@ -45,4 +69,10 @@ a {
 .anouar {
     margin-left: 5px;
     
+}
+footer {
+     text-align: center;
+     margin-top: 150px;
+     margin-bottom: 100px;
+
 }

@@ -1,14 +1,14 @@
-package js
+package groupie
 
 import (
 	"encoding/json"
 	"net/http"
 
-	js "js/data"
+	groupie "groupie/data"
 )
 
-func Traitjs(url string, data *js.Final, id string) error {
-	response, err := http.Get(url + "location/" + id)
+func FetchHandler(url string, data *groupie.Artist, id string) error {
+	response, err := http.Get(url + "locations/" + id)
 	if err != nil {
 		return err
 	}
@@ -26,5 +26,11 @@ func Traitjs(url string, data *js.Final, id string) error {
 	}
 	defer response.Body.Close()
 	json.NewDecoder(response.Body).Decode(&data.Information)
+	res, err1 := http.Get(url + "relation/" + id)
+	if err1 != nil {
+		return err
+	}
+	defer response.Body.Close()
+	json.NewDecoder(res.Body).Decode(&data.Rolation)
 	return err
 }

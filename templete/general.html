@@ -11,16 +11,16 @@
     <div>
         <img src="{{.Information.Image}}" alt="{{.Information.Name}}">
         <h2>{{.Information.Name}}</h2>
-        <p>First Album: {{.Information.FirstAlbum}}</p>
-        <p>Creation Date: {{.Information.CreationDate}}</p>
-        <p>Members:</p>
+        <p><strong>First Album:</strong> {{.Information.FirstAlbum}}</p>
+        <p><strong>Creation Date:</strong> {{.Information.CreationDate}}</p>
+        <p><strong>Members:</strong></p>
         <ul>
             {{range .Information.Members}}
                 <li>{{.}}</li>
             {{end}}
         </ul>
 
-        {{if .Location.Locations}}
+       
         <section>
             <h2>Locations:</h2>
             <ul>
@@ -29,11 +29,11 @@
                 {{end}}
             </ul>
         </section>
-        {{else}}
-            <p>No locations available</p>
-        {{end}}
+       
+           
+     
 
-        {{if .Dates.Dates}}
+       
         <section>
             <h2>Concert Dates:</h2>
             <ul>
@@ -42,22 +42,20 @@
                 {{end}}
             </ul>
         </section>
-        {{else}}
-            <p>No concert dates available</p>
-        {{end}}
+     
+           
+   
 
-        {{if .Rolation.DatesLocations}}
+      
         <section>
             <h2>Date and Location Relations:</h2>
             <ul>
                 {{range $date, $location := .Rolation.DatesLocations}}
-                    <li>{{ $date }} - {{ $location }}</li>
+                    <li>{{ $date }} - {{range $location }}{{.}} {{end}}</li>
                 {{end}}
             </ul>
         </section>
-        {{else}}
-            <p>No date and location relations available</p>
-        {{end}}
+      
     </div>
 </body>
 </html>
