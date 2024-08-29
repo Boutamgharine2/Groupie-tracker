@@ -9,52 +9,58 @@
 <body>
     <h1><strong>General Information about the Artist</strong></h1>
     <div>
-        <img src="{{.Information.Image}}" alt="{{.Information.Name}}">
-        <h2>{{.Information.Name}}</h2>
-        <p><strong>First Album:</strong> {{.Information.FirstAlbum}}</p>
-        <p><strong>Creation Date:</strong> {{.Information.CreationDate}}</p>
-        <p><strong>Members:</strong></p>
-        <ul>
-            {{range .Information.Members}}
+        <div>
+           <img src="{{.Information.Image}}" alt="{{.Information.Name}}">
+           <h2>{{.Information.Name}}</h2>
+           <p><strong>First Album:</strong> {{.Information.FirstAlbum}}</p>
+           <p><strong>Creation Date:</strong> {{.Information.CreationDate}}</p>
+        </div>
+        <div>
+           <p><strong>Members:</strong></p>
+           <ul>
+              {{range .Information.Members}}
                 <li>{{.}}</li>
-            {{end}}
-        </ul>
+              {{end}}
+           </ul>
 
-       
-        <section>
+        </div>
+        <div>        
+          <section>
             <h2>Locations:</h2>
-            <ul>
+              <ul>
                 {{range .Location.Locations}}
                     <li>{{.}}</li>
                 {{end}}
-            </ul>
-        </section>
+              </ul>
+          </section>
+        </div>  
        
            
      
 
-       
-        <section>
+        <div>
+          <section>
             <h2>Concert Dates:</h2>
-            <ul>
+               <ul>
                 {{range .Dates.Dates}}
                     <li>{{.}}</li>
                 {{end}}
-            </ul>
-        </section>
-     
+               </ul>
+          </section>
+        </div>    
            
    
 
-      
-        <section>
+        <div>      
+          <section>
             <h2>Date and Location Relations:</h2>
-            <ul>
+               <ul>
                 {{range $date, $location := .Rolation.DatesLocations}}
                     <li>{{ $date }} - {{range $location }}{{.}} {{end}}</li>
                 {{end}}
-            </ul>
-        </section>
+               </ul>
+          </section>
+        </div>
       
     </div>
 </body>
