@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"log"
+	"net/http"
+
 	groupie "groupie/Handlers"
 )
 

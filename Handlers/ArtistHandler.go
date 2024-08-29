@@ -14,7 +14,7 @@ import (
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	url1 := "https://groupietrackers.herokuapp.com/api/"
 	var data groupie.Artist
-	if  r.Method != http.MethodGet {
+	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
 
@@ -22,13 +22,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 
 	num, err := strconv.Atoi(id)
 	if err != nil || num <= 0 || num > 52 || num == 21 {
-		tmp, err := template.ParseFiles("templete/error.html")
-		if err != nil {
-			http.Error(w, "error", http.StatusInternalServerError)
-			return
-		}
-		w.WriteHeader(404)
-		tmp.Execute(w, nil)
+		PageNotFound(w, r)
 		return
 	}
 	err1 := FetchHandler(url1, &data, strconv.Itoa(num))
