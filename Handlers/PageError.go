@@ -5,15 +5,22 @@ import (
 	"text/template"
 )
 
-func PageNotFound(w http.ResponseWriter, r *http.Request) {
+type err struct {
+	Error string
+	Code  int
+}
+
+func PageError(w http.ResponseWriter, r *http.Request, code int, Message string) {
+	msg_error := &err{Error: Message + "!", Code: code}
+
 	tmp, err := template.ParseFiles("templete/error.html")
 	if err != nil {
 		http.Error(w, "error", http.StatusInternalServerError)
 		return
 	}
-	w.WriteHeader(404)
+	w.WriteHeader(code)
 
-	err = tmp.Execute(w, nil)
+	err = tmp.Execute(w, msg_error)
 	if err != nil {
 		http.Error(w, "serveur error", http.StatusInternalServerError)
 		return

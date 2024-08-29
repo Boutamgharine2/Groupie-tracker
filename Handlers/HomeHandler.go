@@ -7,22 +7,27 @@ import (
 	groupie "groupie/data"
 )
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {                       //fonction pour traiter les informations necessaire dans la premiere page
+func HomeHandler(w http.ResponseWriter, r *http.Request) { // fonction pour traiter les informations necessaire dans la premiere page
 	var tableau []groupie.Band
-	url := "https://groupietrackers.herokuapp.com/api/artists"                                 
+	url := "https://groupietrackers.herokuapp.com/api/artists"
 
 	if r.URL.Path != "/" {
-		PageNotFound(w, r)
+		PageError(w, r, http.StatusNotFound, "page Not found")
 		return
 	}
 
 	if r.Method != http.MethodGet {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		PageError(w, r, http.StatusMethodNotAllowed, "Method not allowed")
+
 		return
 	}
 
-	data := Handler(url, tableau)                                             // decodé les donnès jeson et les stocker dans le variable tableau
-	tmpl := template.Must(template.ParseFiles("templete/index.html"))
+	data := Handler(url, tableau) // decodé les donnès jeson et les stocker dans le variable tableau
+	tmpl, err := template.ParseFiles("templete/index.html")
+	if err != nil {
+		PageError(w, r, http.StatusInternalServerError, "Internal Server Error")
+		return
+	}
 
 	tmpl.Execute(w, data)
 }
