@@ -8,7 +8,7 @@ import (
 func FetchHandler(url string, data any, id string, w http.ResponseWriter, r *http.Request) {
 	response, err := http.Get(url + id)
 	if err != nil {
-		PageError(w, r, http.StatusInternalServerError, "Internal Server Error")
+		ErrorHandler(w, r, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
 	defer response.Body.Close()

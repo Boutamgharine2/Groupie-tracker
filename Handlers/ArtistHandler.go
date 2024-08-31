@@ -51,12 +51,6 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 	}()
 	wg.Wait()
 
-
-	if err1 != nil {
-		ErrorHandler(w, r, http.StatusInternalServerError, "Internal Server Error")
-		return
-	}
-
 	tmpl, err2 := template.ParseFiles("templete/general.html")
 	if err2 != nil {
 		ErrorHandler(w, r, http.StatusInternalServerError, "Internal Server Error")
