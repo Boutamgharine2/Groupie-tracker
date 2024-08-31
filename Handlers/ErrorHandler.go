@@ -10,19 +10,19 @@ type err struct {
 	Code  int
 }
 
-func PageError(w http.ResponseWriter, r *http.Request, code int, Message string) {
+func ErrorHandler(w http.ResponseWriter, r *http.Request, code int, Message string) {
 	msg_error := &err{Error: Message + "!", Code: code}
 
 	tmp, err := template.ParseFiles("templete/error.html")
 	if err != nil {
-		http.Error(w, "error", http.StatusInternalServerError)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
 		return
 	}
 	w.WriteHeader(code)
 
 	err = tmp.Execute(w, msg_error)
 	if err != nil {
-		http.Error(w, "serveur error", http.StatusInternalServerError)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
 		return
 	}
 }

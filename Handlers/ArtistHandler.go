@@ -13,7 +13,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 	url1 := "https://groupietrackers.herokuapp.com/api/"
 	var data groupie.Artist
 	if r.Method != http.MethodGet {
-		PageError(w, r, http.StatusMethodNotAllowed, "Method not allowed")
+		ErrorHandler(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 		return
 
 	}
@@ -22,19 +22,19 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 
 	num, err := strconv.Atoi(id)
 	if err != nil || num <= 0 || num > 52 {
-		PageError(w, r, http.StatusNotFound, "page Not found")
+		ErrorHandler(w, r, http.StatusNotFound, "page Not found")
 
 		return
 	}
 	err1 := FetchHandler(url1, &data, strconv.Itoa(num)) // remplir les defèrants structures à partir des donnés des APIS
 
 	if err1 != nil {
-		PageError(w, r, http.StatusInternalServerError, "Internal Server Error")
+		ErrorHandler(w, r, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
 	tmpl, err2 := template.ParseFiles("templete/general.html")
 	if err2 != nil {
-		PageError(w, r, http.StatusInternalServerError, "Internal Server Error")
+		ErrorHandler(w, r, http.StatusInternalServerError, "Internal Server Error")
 		return
 
 	}

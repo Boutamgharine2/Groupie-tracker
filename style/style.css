@@ -11,6 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
+    color: #ffffff;
 }
 
 .container {
@@ -44,7 +45,7 @@ h1 {
 .box {
     position: relative;
     width: 100%;
-    padding-bottom: 100%; /* This creates a 1:1 aspect ratio */
+    padding-bottom: 100%;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     overflow: hidden;
@@ -139,38 +140,175 @@ h1 {
     letter-spacing: 0.1em;
 }
 
-@media (max-width: 1200px) {
-    .artist-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
+/* Additional styles for detailed information sections */
+.details-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+    color: #ffffff;
+}
+
+.details-section h2 {
+    color: #ef233c;
+    margin-bottom: 15px;
+}
+
+.details-section h3 {
+    color: #4fb663;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.details-section ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.details-section li {
+    margin-bottom: 5px;
+}
+
+/* New styles for artist card */
+.artist-card {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.artist-card img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px;
+    border: 6px solid #070a1c;
+}
+
+.artist-card h2 {
+    text-align: center;
+    color: #ef233c;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.artist-card p {
+    margin-bottom: 10px;
+}
+
+.artist-card ul {
+    list-style-type: none;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.artist-card li {
+    margin-bottom: 5px;
+}
+
+.info-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.info-section h2 {
+    color: #47c460;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+.go-back-btn {
+    display: block;
+    width: fit-content;
+    margin: 30px auto 0; /* Center horizontally and add top margin */
+    padding: 10px 20px;
+    background: #ef233c;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: 0.3s;
+}
+
+.go-back-btn:hover {
+    background: #386641;
+    letter-spacing: 0.1em;
+}
+
+/* Update container style */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    padding: 20px;
+    margin: 0 auto; /* Center the container */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the container takes at least the full viewport height */
 }
 
 @media (max-width: 768px) {
     .artist-grid {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     }
-
+    
     .content h2 {
         font-size: 1rem;
     }
-
+    
     .content a {
         font-size: 0.8em;
         padding: 6px 12px;
     }
+
+    .artist-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .info-section h2 {
+        font-size: 1.2rem;
+    }
+
+    .go-back-btn {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+
 }
 
 @media (max-width: 480px) {
     .artist-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
-
+    
     .content h2 {
         font-size: 0.9rem;
     }
-
+    
     .content a {
         font-size: 0.7em;
         padding: 5px 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .artist-card h2 {
+        font-size: 1.2rem;
+    }
+
+    .info-section h2 {
+        font-size: 1rem;
+    }
+    .go-back-btn {
+        font-size: 0.8em;
+        padding: 6px 12px;
     }
 }
