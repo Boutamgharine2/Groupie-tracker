@@ -13,7 +13,7 @@ import (
 func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les information des artistes dans la second page
 	url1 := "https://groupietrackers.herokuapp.com/api/"
 	var data groupie.Artist
-	var wg sync.WaitGroup
+	var wg sync.WaitGroup // un variable waitgroup pour gerer les gourotines
 
 	if r.Method != http.MethodGet {
 		ErrorHandler(w, r, http.StatusMethodNotAllowed, "Method not allowed")
@@ -22,6 +22,12 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 	}
 
 	id := strings.Trim(r.URL.Path, "/artist/")
+	if len(id) > 500 {
+		ErrorHandler(w, r, http.StatusNotFound, "page Not found")
+
+		return
+
+	}
 
 	num, err := strconv.Atoi(id)
 	if err != nil || num <= 0 || num > 52 {
@@ -29,10 +35,10 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 
 		return
 	}
-	wg.Add(4)
+	wg.Add(4) // declarer a waitgroup que ona 4 gourotine
 
 	go func() {
-		defer wg.Done()
+		defer wg.Done() // lorsque la gourotine terminer envouyer un Done
 
 		FetchHandler(url1+"locations/", &data.Location, strconv.Itoa(num), w, r)
 	}()
@@ -49,7 +55,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 		defer wg.Done()
 		FetchHandler(url1+"relation/", &data.Rolation, strconv.Itoa(num), w, r)
 	}()
-	wg.Wait()
+	wg.Wait() // attendre l'exucution de touts les gourotine avant de continue l'execution de programme
 
 	tmpl, err2 := template.ParseFiles("templete/general.html")
 	if err2 != nil {
