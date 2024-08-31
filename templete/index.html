@@ -11,7 +11,7 @@
         <h1><strong>artists</strong></h1>
         <div class="artist-grid">
             {{range .}}
-                {{if and (ne .Id 21) (ne .Id 43)}}
+                {{if (ne .Id 21) }}
                     <div class="artist-item">
                         <div class="box">
                             <div class="content">

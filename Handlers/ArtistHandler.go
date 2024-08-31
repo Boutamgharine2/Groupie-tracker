@@ -26,12 +26,11 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 
 		return
 	}
-	err1 := FetchHandler(url1, &data, strconv.Itoa(num)) // remplir les defèrants structures à partir des donnés des APIS
+	go FetchHandler(url1+"locations/", &data.Location, strconv.Itoa(num), w, r)
+	FetchHandler(url1+"dates/", &data.Dates, strconv.Itoa(num), w, r) // remplir les defèrants structures à partir des donnés des APIS
+	FetchHandler(url1+"artists/", &data.Information, strconv.Itoa(num), w, r)
+	FetchHandler(url1+"relation/", &data.Rolation, strconv.Itoa(num), w, r)
 
-	if err1 != nil {
-		PageError(w, r, http.StatusInternalServerError, "Internal Server Error")
-		return
-	}
 	tmpl, err2 := template.ParseFiles("templete/general.html")
 	if err2 != nil {
 		PageError(w, r, http.StatusInternalServerError, "Internal Server Error")
