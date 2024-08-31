@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"sync"
 	"text/template"
 
 	groupie "groupie/data"
@@ -12,6 +13,8 @@ import (
 func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les information des artistes dans la second page
 	url1 := "https://groupietrackers.herokuapp.com/api/"
 	var data groupie.Artist
+	var wg sync.WaitGroup
+
 	if r.Method != http.MethodGet {
 		PageError(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 		return
@@ -26,10 +29,27 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 
 		return
 	}
-	go FetchHandler(url1+"locations/", &data.Location, strconv.Itoa(num), w, r)
-	FetchHandler(url1+"dates/", &data.Dates, strconv.Itoa(num), w, r) // remplir les defèrants structures à partir des donnés des APIS
-	FetchHandler(url1+"artists/", &data.Information, strconv.Itoa(num), w, r)
-	FetchHandler(url1+"relation/", &data.Rolation, strconv.Itoa(num), w, r)
+	wg.Add(4)
+
+	go func() {
+		defer wg.Done()
+
+		FetchHandler(url1+"locations/", &data.Location, strconv.Itoa(num), w, r)
+	}()
+	go func() {
+		defer wg.Done()
+		FetchHandler(url1+"dates/", &data.Dates, strconv.Itoa(num), w, r) // remplir les defèrants structures à partir des donnés des APIS
+	}()
+	go func() {
+		defer wg.Done()
+
+		FetchHandler(url1+"artists/", &data.Information, strconv.Itoa(num), w, r)
+	}()
+	go func() {
+		defer wg.Done()
+		FetchHandler(url1+"relation/", &data.Rolation, strconv.Itoa(num), w, r)
+	}()
+	wg.Wait()
 
 	tmpl, err2 := template.ParseFiles("templete/general.html")
 	if err2 != nil {
