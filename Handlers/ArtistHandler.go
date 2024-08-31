@@ -16,7 +16,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 	var wg sync.WaitGroup
 
 	if r.Method != http.MethodGet {
-		PageError(w, r, http.StatusMethodNotAllowed, "Method not allowed")
+		ErrorHandler(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 		return
 
 	}
@@ -25,7 +25,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 
 	num, err := strconv.Atoi(id)
 	if err != nil || num <= 0 || num > 52 {
-		PageError(w, r, http.StatusNotFound, "page Not found")
+		ErrorHandler(w, r, http.StatusNotFound, "page Not found")
 
 		return
 	}
@@ -51,9 +51,15 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 	}()
 	wg.Wait()
 
+
+	if err1 != nil {
+		ErrorHandler(w, r, http.StatusInternalServerError, "Internal Server Error")
+		return
+	}
+
 	tmpl, err2 := template.ParseFiles("templete/general.html")
 	if err2 != nil {
-		PageError(w, r, http.StatusInternalServerError, "Internal Server Error")
+		ErrorHandler(w, r, http.StatusInternalServerError, "Internal Server Error")
 		return
 
 	}

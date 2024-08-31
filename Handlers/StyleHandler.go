@@ -6,10 +6,8 @@ import (
 
 func StyleHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/style/" {
-		PageError(w, r, http.StatusNotFound, "page not Found")
-
+		ErrorHandler(w, r, http.StatusNotFound, "page not Found")
 		return
-
 	}
 
 	fs := http.FileServer(http.Dir("./style/")) // server les fichiès statique à partir de le repertoire specifique

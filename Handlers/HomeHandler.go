@@ -12,12 +12,12 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) { // fonction pour trai
 	url := "https://groupietrackers.herokuapp.com/api/artists"
 
 	if r.URL.Path != "/" {
-		PageError(w, r, http.StatusNotFound, "page Not found")
+		ErrorHandler(w, r, http.StatusNotFound, "page Not found")
 		return
 	}
 
 	if r.Method != http.MethodGet {
-		PageError(w, r, http.StatusMethodNotAllowed, "Method not allowed")
+		ErrorHandler(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 
 		return
 	}
@@ -25,7 +25,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) { // fonction pour trai
 	data := Handler(url, tableau) // decodé les donnès jeson et les stocker dans le variable tableau
 	tmpl, err := template.ParseFiles("templete/index.html")
 	if err != nil {
-		PageError(w, r, http.StatusInternalServerError, "Internal Server Error")
+		ErrorHandler(w, r, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
 
