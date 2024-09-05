@@ -45,7 +45,7 @@
                     <h2>Date and Location Relations:</h2>
                     <ul>
                         {{range $date, $location := .Rolation.DatesLocations}}
-                            <li>{{ $date }} - {{range $location }}{{.}} {{end}}</li>
+                            <li>{{ $date }} : {{range $location }}{{.}} {{end}}</li>
                         {{end}}
                     </ul>
                 </section>
