@@ -24,9 +24,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 	id := strings.Trim(r.URL.Path, "/artist/")
 	if len(id) > 500 {
 		ErrorHandler(w, r, http.StatusNotFound, "page Not found")
-
 		return
-
 	}
 
 	num, err := strconv.Atoi(id)
@@ -55,14 +53,16 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 		defer wg.Done()
 		FetchHandler(url1+"relation/", &data.Rolation, strconv.Itoa(num), w, r)
 	}()
-	wg.Wait() // attendre l'exucution de touts les gourotine avant de continue l'execution de
-	data.Dates.Dates = Suprimmetoile(data.Dates.Dates)
-	tmpl, err2 := template.ParseFiles("templete/general.html")
+	wg.Wait() // attendre l'exucution de touts les gourotine avant de continue l'execution de programme
+
+	tmpl, err2 := template.ParseFiles("templete/artist.html")
 	if err2 != nil {
 		ErrorHandler(w, r, http.StatusInternalServerError, "Internal Server Error")
 		return
 
 	}
 
-	tmpl.Execute(w, data)
+	if err := tmpl.Execute(w, data); err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
 }

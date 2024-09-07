@@ -2,14 +2,15 @@ package groupie
 
 import (
 	"net/http"
+	"strings"
 )
 
 func StyleHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path == "/style/" {
-		ErrorHandler(w, r, http.StatusNotFound, "page not Found")
+	if strings.HasSuffix(r.URL.Path, "/") {
+		ErrorHandler(w, r, http.StatusNotFound, "page not found")
 		return
 	}
-
-	fs := http.FileServer(http.Dir("./style/")) // server les fichiès statique à partir de le repertoire specifique
+	// Serve static files from the "./style/" directory
+	fs := http.FileServer(http.Dir("./style/"))
 	http.StripPrefix("/style/", (fs)).ServeHTTP(w, r)
 }
