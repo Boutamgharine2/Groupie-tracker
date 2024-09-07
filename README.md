@@ -32,3 +32,8 @@ If your repository URL is `https://github.com/yourusername/groupie-tracker` and 
 
    ```bash
    git clone https://github.com/yourusername/groupie-tracker
+
+## Authors:
+@aboutamgh 
+@asoudri 
+@ktrichin

@@ -54,6 +54,8 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 		FetchHandler(url1+"relation/", &data.Rolation, strconv.Itoa(num), w, r)
 	}()
 	wg.Wait() // attendre l'exucution de touts les gourotine avant de continue l'execution de programme
+	
+	data.Dates.Dates = RemoveAsterisk(data.Dates.Dates)
 
 	tmpl, err2 := template.ParseFiles("templete/artist.html")
 	if err2 != nil {
