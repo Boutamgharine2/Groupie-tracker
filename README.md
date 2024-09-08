@@ -17,7 +17,7 @@
 
 ### Example
 
-If your repository URL is `https://github.com/yourusername/groupie-tracker` and your project directory is `groupie-tracker`, your `README.md` file would look like this:
+If your repository URL is `https://learn.zone01oujda.ma/git/asoudri/groupie-tracker.git` and your project directory is `groupie-tracker`, your `README.md` file would look like this:
 
 ```markdown
 ### Groupie Tracker
