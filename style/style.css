@@ -7,18 +7,12 @@
 body {
     background: linear-gradient(to left, #ffffff, #22a8a3);
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
     font-family: Arial, sans-serif;
     color: #ffffff;
 }
 
 header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     padding: 30px 40px;
-    background-color: transparent;
 }
 
 .logo {
@@ -33,9 +27,6 @@ header {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
     padding: 20px;
 }
 
@@ -63,12 +54,6 @@ header {
     margin-bottom: 20px;
     text-shadow: 0 -0.5vmin 0.2vmin #ffffff, -0.1vmin 0.7vmin 0.3vmin #172c41;
     color: #203a42;
-}
-
-.button-container {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
 }
 
 .explore-button,
@@ -110,13 +95,6 @@ header {
 .go-back-btn {
     margin: 20px auto;
     display: block;
-}
-
-.artists-title {
-    font-size: 9vmin;
-    text-align: center;
-    margin-top: 20px;
-    color: #0c2d13;
 }
 
 .artist-grid {
