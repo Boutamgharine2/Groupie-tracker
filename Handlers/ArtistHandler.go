@@ -21,7 +21,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 
 	}
 
-	id := strings.Trim(r.URL.Path, "/artist/")
+	id := strings.TrimPrefix(r.URL.Path, "/artist/")
 	if len(id) > 500 {
 		ErrorHandler(w, r, http.StatusNotFound, "page Not found")
 		return
