@@ -7,6 +7,8 @@ import (
 	groupie "groupie/data"
 )
 
+var Data []groupie.Band
+
 func HomeHandler(w http.ResponseWriter, r *http.Request) { // fonction pour traiter les informations necessaire dans la premiere page
 	var tableau []groupie.Band
 	url := "https://groupietrackers.herokuapp.com/api/artists"
@@ -22,14 +24,14 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) { // fonction pour trai
 		return
 	}
 
-	data := HomeApi(w, r,url, tableau) // decodé les donnès jeson et les stocker dans le variable tableau
+	Data = HomeApi(w, r, url, tableau) // decodé les donnès jeson et les stocker dans le variable tableau
 	tmpl, err := template.ParseFiles("templete/index.html")
 	if err != nil {
 		ErrorHandler(w, r, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
 
-	if err := tmpl.Execute(w, data); err != nil {
+	if err := tmpl.Execute(w, Data); err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
 }

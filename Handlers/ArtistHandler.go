@@ -28,7 +28,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 	}
 
 	num, err := strconv.Atoi(id)
-	if err != nil || num <= 0 || num > 52 {
+	if err != nil || num <= 0 || num > len(Data) {
 		ErrorHandler(w, r, http.StatusNotFound, "page Not found")
 
 		return
@@ -54,7 +54,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) { // traiter les info
 		FetchHandler(url1+"relation/", &data.Rolation, strconv.Itoa(num), w, r)
 	}()
 	wg.Wait() // attendre l'exucution de touts les gourotine avant de continue l'execution de programme
-	
+
 	data.Dates.Dates = RemoveAsterisk(data.Dates.Dates)
 
 	tmpl, err2 := template.ParseFiles("templete/artist.html")
